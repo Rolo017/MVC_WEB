@@ -1,0 +1,22 @@
+﻿a {
+    color: #02a0c7;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+
+    a:hover {
+        color: #047fba;
+        text-decoration: underline;
+    }
+.btn-primary {
+    color: #fff;
+    background-color: #02a0c7;
+    border-color: #02a0c7;
+}
+
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #047fba;
+        border-color: #02a0c7;
+    }
