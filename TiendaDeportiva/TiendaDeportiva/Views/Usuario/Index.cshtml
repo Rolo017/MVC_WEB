@@ -1,4 +1,4 @@
-﻿@model IEnumerable<JN_API.Entities.UsuarioObj>
+﻿@model IEnumerable<TiendaDeportiva.Entities.UsuarioObj>
 
 @{
     ViewData["Title"] = "Usuarios";
@@ -38,34 +38,42 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>@Html.DisplayNameFor(model => model.Usuario)</th>
-                                        <th>@Html.DisplayNameFor(model => model.Contrasenna)</th>
-                                        <th>@Html.DisplayNameFor(model => model.Activo)</th>
-                                        <th>@Html.DisplayNameFor(model => model.CambioContrasenna)</th>
-                                        <th>@Html.DisplayNameFor(model => model.TipoUsuario)</th>
+                                        <th>Cedula</th>
+                                        <th>Nombre</th>
+                                        <th>Apellidos</th>
+                                        <th>Correo</th>
+                                        <th>Estado</th>
+                                        <th>Rol</th>
+                                        <th>Token</th>
                                         <th>Accion</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @*@if (Model != null)
+                                    @if (Model != null)
                                     {
-                                        @foreach (var item in Model)
-                                        {*@
+                                        foreach (var item in Model)
+                                        {
                                             <tr>
                                                 <td>
-                                                    1
+                                                    @item.Cedula
                                                 </td>
                                                 <td>
-                                                    1
+                                                    @item.Nombre
                                                 </td>
                                                 <td>
-                                                    1
+                                                    @item.Apellidos
                                                 </td>
                                                 <td>
-                                                    1
+                                                    @item.Correo
                                                 </td>
                                                 <td>
-                                                    1
+                                                    @item.Activo
+                                                </td>
+                                                <td>
+                                                    @item.IdRol
+                                                </td>
+                                                <td>
+                                                    @item.Token
                                                 </td>
                                                 <td>
                                                     @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
@@ -73,14 +81,14 @@
                                                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
                                                 </td>
                                             </tr>
-                                     @*   }
+                                        }
                                     }
                                     else
                                     {
                                         <tr class="text-center">
                                             <td colspan="5">Sin Datos</td>
                                         </tr>
-                                    }*@
+                                    }
                                 </tbody>
 
                             </table>

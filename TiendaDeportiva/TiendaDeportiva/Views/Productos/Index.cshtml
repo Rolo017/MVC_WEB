@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<TiendaDeportiva.Entities.ProductosObj>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutDatatables.cshtml";
@@ -42,48 +42,44 @@
                                         <th>Descripcion</th>
                                         <th>Precio</th>
                                         <th>Cantidad</th>
-                                        <th>ID Tipo Producto</th>
                                         <th>Accion</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @*@if (Model != null)
+                                    @if (Model != null)
                                     {
-                                    @foreach (var item in Model)
-                                    {*@
-                                    <tr>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>
-                                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                                        </td>
-                                    </tr>
-                                    @*}
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @item.IdProducto
+                                                </td>
+                                                <td>
+                                                    @item.Nombre
+                                                </td>
+                                                <td>
+                                                    @item.Descripcion
+                                                </td>
+                                                <td>
+                                                    @item.Precio
+                                                </td>
+                                                <td>
+                                                    @item.Cantidad
+                                                </td>
+                                                <td>
+                                                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                                </td>
+                                            </tr>
+                                        }
                                     }
                                     else
                                     {
-                                    <tr class="text-center">
-                                    <td colspan="4">Sin Datos</td>
-                                    </tr>
-                                    }*@
+                                        <tr class="text-center">
+                                            <td colspan="6">Sin Datos</td>
+                                        </tr>
+                                    }
                                 </tbody>
 
                             </table>
@@ -101,4 +97,3 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-

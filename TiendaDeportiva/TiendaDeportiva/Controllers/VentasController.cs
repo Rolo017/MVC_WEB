@@ -1,13 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TiendaDeportiva.Entities;
+using TiendaDeportiva.Models;
 
 namespace TiendaDeportiva.Controllers
 {
     public class VentasController : Controller
     {
-        // GET: VentasController1
-        public ActionResult Index()
+
+        VentasObj ventE = new VentasObj();
+        VentasModel vent = new VentasModel();
+        public IActionResult Index()
         {
-            return View();
+            List<VentasObj> _ventas = new List<VentasObj>();
+            _ventas = vent.GetVentas().ToList();
+            return View(_ventas);
         }
 
         // GET: VentasController1/Details/5

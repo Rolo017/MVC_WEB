@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<TiendaDeportiva.Entities.RolesObj>
+@{
     ViewData["Title"] = "Roles";
     Layout = "~/Views/Shared/_LayoutDatatables.cshtml";
 }
@@ -37,44 +38,35 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Rol</th>
                                         <th>Descripcion</th>
-                                        <th>ID Permiso</th>
                                         <th>Accion</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @*@if (Model != null)
+                                    @if (Model != null)
                                     {
                                         @foreach (var item in Model)
-                                        {*@
+                                        {
                                             <tr>
                                                 <td>
-                                                    1
+                                                    @item.IdRol
                                                 </td>
                                                 <td>
-                                                    1
+                                                    @item.Roles
                                                 </td>
                                                 <td>
-                                                    1
-                                                </td>
-                                                <td>
-                                                    1
-                                                </td>
-                                                <td>
-                                                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                                    <a href="@Url.Action("Edit","Roles", new { ID = item.IdRol })" class="btn btn-danger" type="button" value="">Editar</a>
+                                                    <a href="@Url.Action("Delete","Roles", new { ID = item.IdRol })" class="btn btn-danger" type="button" value="">Eliminar</a>
                                                 </td>
                                             </tr>
-                                        @*}
+                                        }
                                     }
                                     else
                                     {
                                         <tr class="text-center">
-                                            <td colspan="4">Sin Datos</td>
+                                            <td colspan="3">Sin Datos</td>
                                         </tr>
-                                    }*@
+                                    }
                                 </tbody>
 
                             </table>

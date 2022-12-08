@@ -1,36 +1,18 @@
 ﻿using Newtonsoft.Json;
-using System.Net.Http.Headers;
 using TiendaDeportiva.Entities;
 
 namespace TiendaDeportiva.Models
 {
-    public class UsuarioModel
+    public class ProductosModel
     {
         string urlPut = "https://localhost:7019/ActualizarRol?IdRol=11&Roles=Admin";
         string urlPost = "https://localhost:7019/Registrarrol?IdRol=10&Roles=admin2";
-        string urlGet = "https://localhost:7019/api/Usuario/GetUsuarios";
+        string urlGet = "https://localhost:7019/api/Productos/GetProducto";
         string urlDElete = "https://localhost:7019/Delete?Rol=1";
 
         public string lblmsj { get; set; }
-        List<UsuarioObj> u = new List<UsuarioObj>();
-
-        public UsuarioObj? ValidarUsuario(UsuarioObj objeto)
-        {
-            using (HttpClient acceso = new HttpClient())
-            {
-                string urlApi = "http://localhost/SERVICE/api/Usuario/ValidarUsuario";
-                JsonContent contenido = JsonContent.Create(objeto);
-
-                HttpResponseMessage respuesta = acceso.PostAsync(urlApi, contenido).GetAwaiter().GetResult();
-
-                if (respuesta.IsSuccessStatusCode)
-                    return respuesta.Content.ReadFromJsonAsync<UsuarioObj>().Result;
-                else
-                    return null;
-            }
-        }
-
-        public List<UsuarioObj> GetUsuarios()
+        List<ProductosObj> p = new List<ProductosObj>();
+        public List<ProductosObj> GetProductos()
         {
             //IEnumerable<Carrera> A;
             using (var client = new HttpClient())
@@ -48,16 +30,14 @@ namespace TiendaDeportiva.Models
                         return await message.Content.ReadAsStringAsync();
                     });
                     string resultstr = task2.Result;
-                    u = JsonConvert.DeserializeObject<List<UsuarioObj>>(resultstr);
+                    p = JsonConvert.DeserializeObject<List<ProductosObj>>(resultstr);
                 }
                 else
                 {
 
                 }
             }
-            return u;
+            return p;
         }
-
     }
 }
-

@@ -1,15 +1,25 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Policy;
+using TiendaDeportiva.Entities;
+using TiendaDeportiva.Models;
 
 namespace TiendaDeportiva.Controllers
 {
     public class ProductosController : Controller
     {
+        private readonly ILogger<Usuario> _logger;
+
+        ProductosObj ProducE = new ProductosObj();
+        ProductosModel prod = new ProductosModel();
         // GET: ProductosController
         public ActionResult Index()
         {
-            return View();
+            List<ProductosObj> _Productos = new List<ProductosObj>();
+            _Productos = prod.GetProductos().ToList();
+            return View(_Productos);
         }
+
 
         // GET: ProductosController/Details/5
         public ActionResult Details(int id)
