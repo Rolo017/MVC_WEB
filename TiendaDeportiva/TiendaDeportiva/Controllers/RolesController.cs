@@ -59,20 +59,14 @@ namespace TiendaDeportiva.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(RolesObj rolesC)
         {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    rol.PostRoles(rolesC);
-                    return RedirectToAction("Index");
-                }
-                //ViewBag.CodigoProveedor = new SelectList(db.Proveedores, "CodigoProveedor", "Nombre", articulos.CodigoProveedor);
-                return View(rolesC);
-            }
-            catch
-            {
-                return View();
-            }
+            rol.PostRoles(rolesC);
+            return RedirectToAction("Index", "Roles");
+            //else
+            //{
+            //    ErrorViewModel error = new ErrorViewModel();
+            //    error.RequestId = "01";
+            //    return View("Error", error);
+            //}
         }
 
         // GET: RolesController/Edit/5

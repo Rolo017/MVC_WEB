@@ -1,7 +1,10 @@
 ﻿using Newtonsoft.Json;
+using NuGet.Common;
 using System;
+using System.Net.Http.Headers;
 using System.Security.Policy;
 using System.Text;
+using TiendaDeportiva.Controllers;
 using TiendaDeportiva.Entities;
 
 namespace TiendaDeportiva.Models
@@ -9,7 +12,7 @@ namespace TiendaDeportiva.Models
     public class RolesModel
     {
         string urlPut = "https://localhost:7019/ActualizarRol?IdRol=11&Roles=Admin";
-        string urlPost = "https://localhost:7019/Registrarrol?IdRol=10&Roles=admin2";
+        string urlPost = "https://localhost:7019/";
         string urlGet = "https://localhost:7019/GetRol";
         string urlDElete = "https://localhost:7019/Delete?Rol=1";
         public string lblmsj { get; set; }
@@ -44,18 +47,32 @@ namespace TiendaDeportiva.Models
             return c;
         }
         #region PostCursos
-        public void PostRoles(RolesObj c)
+        public string PostRoles(RolesObj c)
         {
-            //string pd = "api/Carreras/1?nombre=admin4";
-            string json = c.toJsonString();
-            using (var client = new System.Net.Http.HttpClient())
-            {
-                var httpContent = new StringContent(urlPost, Encoding.UTF8, "application/json");
+            ////string pd = "api/Carreras/1?nombre=admin4";
+            //string json = c.toJsonString();
+            //using (var client = new System.Net.Http.HttpClient())
+            //{
+            //    var httpContent = new StringContent(urlPost, Encoding.UTF8, "application/json");
 
-                client.BaseAddress = new Uri("https://localhost:7019/"); //Preguntar
-                var putTask = client.PutAsync("Registrarrol?IdRol=" + c.IdRol + "&Roles=" + c.Roles, httpContent);
-                putTask.Wait();
-                var result = putTask.Result;
+            //    client.BaseAddress = new Uri("https://localhost:7019/"); //Preguntar
+            //    var putTask = client.PutAsync("Registrarrol?IdRol=" + c.IdRol + "&Roles=" + c.Roles, httpContent);
+            //    putTask.Wait();
+            //    var result = putTask.Result;
+            //}
+            using (HttpClient acceso = new HttpClient())
+            {
+                //string urlApi = "http://localhost/SERVICE/" + "api/UsuarioApi/CreateUsuario";
+                string urlApi = "https://localhost:7019/" + "Registrarrol";
+                JsonContent contenido = JsonContent.Create(c);
+
+                HttpResponseMessage respuesta = acceso.PostAsync(urlApi, contenido).GetAwaiter().GetResult();
+
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    return "OK";
+                }
+                return string.Empty;
             }
         }
         #endregion
@@ -92,7 +109,7 @@ namespace TiendaDeportiva.Models
 
 
         //**************************************
-        #region PutCursos
+        #region PUTRoles
         public void PUTRoles(RolesObj c)
         {
             //string pd = "api/Carreras/1?nombre=admin4";
