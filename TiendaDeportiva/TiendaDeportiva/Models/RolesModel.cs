@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using NuGet.Common;
 using System;
 using System.Net.Http.Headers;
@@ -13,10 +14,12 @@ namespace TiendaDeportiva.Models
     {
         string urlPut = "https://localhost:7019/ActualizarRol?IdRol=11&Roles=Admin";
         string urlPost = "https://localhost:7019/";
-        string urlGet = "https://localhost:7019/GetRol";
-        string urlDElete = "https://localhost:7019/Delete?Rol=1";
+        string urlGet = "https://localhost:7019/api/Roles/Get";
+        string urlDElete = "https://localhost:7019/api/Roles/Delete?Rol=1";
         public string lblmsj { get; set; }
         List<RolesObj> c = new List<RolesObj>();
+        RolesObj rol = new RolesObj();
+
         //*************************************
         #region GETCursos
         public List<RolesObj> GetRoles()
@@ -46,26 +49,43 @@ namespace TiendaDeportiva.Models
             }
             return c;
         }
-        #region PostCursos
-        public string PostRoles(RolesObj c)
+        public RolesObj GetRoles(int id)
         {
-            ////string pd = "api/Carreras/1?nombre=admin4";
-            //string json = c.toJsonString();
-            //using (var client = new System.Net.Http.HttpClient())
-            //{
-            //    var httpContent = new StringContent(urlPost, Encoding.UTF8, "application/json");
+            //IEnumerable<Carrera> A;
+            using (var client = new HttpClient())
+            {
+                var task = Task.Run(async () =>
+                {
+                    return await client.GetAsync(urlGet + "/" + id.ToString());
+                }
+                );
+                HttpResponseMessage message = task.Result;
+                if (message.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    var task2 = Task<string>.Run(async () =>
+                    {
+                        return await message.Content.ReadAsStringAsync();
+                    });
+                    string resultstr = task2.Result;
+                    rol = JsonConvert.DeserializeObject<RolesObj>(resultstr);
+                }
+                else
+                {
 
-            //    client.BaseAddress = new Uri("https://localhost:7019/"); //Preguntar
-            //    var putTask = client.PutAsync("Registrarrol?IdRol=" + c.IdRol + "&Roles=" + c.Roles, httpContent);
-            //    putTask.Wait();
-            //    var result = putTask.Result;
-            //}
+                }
+            }
+            return rol;
+        }
+        #region PostCursos
+        public string PostRoles(RolesObj rol)
+        {
             using (HttpClient acceso = new HttpClient())
             {
-                //string urlApi = "http://localhost/SERVICE/" + "api/UsuarioApi/CreateUsuario";
-                string urlApi = "https://localhost:7019/" + "Registrarrol";
-                JsonContent contenido = JsonContent.Create(c);
 
+                //string urlApi = "http://localhost/SERVICE/" + "api/UsuarioApi/CreateUsuario";
+                string urlApi = "https://localhost:7019/" + "api/Roles/RegistrarRoles";
+
+                JsonContent contenido = JsonContent.Create(rol);
                 HttpResponseMessage respuesta = acceso.PostAsync(urlApi, contenido).GetAwaiter().GetResult();
 
                 if (respuesta.IsSuccessStatusCode)
@@ -73,6 +93,7 @@ namespace TiendaDeportiva.Models
                     return "OK";
                 }
                 return string.Empty;
+
             }
         }
         #endregion
@@ -86,7 +107,7 @@ namespace TiendaDeportiva.Models
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri("https://localhost:7019/");
-                    var response = client.DeleteAsync("Delete?Rol=" + id);
+                    var response = client.DeleteAsync("api/Roles/Delete?Rol=" + id);
                     response.Wait();
                     var result = response.Result;
                     if (result.IsSuccessStatusCode)
@@ -110,24 +131,30 @@ namespace TiendaDeportiva.Models
 
         //**************************************
         #region PUTRoles
-        public void PUTRoles(RolesObj c)
+        public string PUTRoles(RolesObj Rol)
         {
-            //string pd = "api/Carreras/1?nombre=admin4";
-            string json = c.toJsonString();
-            using (var client = new System.Net.Http.HttpClient())
+            using (HttpClient acceso = new HttpClient())
             {
-                var httpContent = new StringContent(urlPut, Encoding.UTF8, "application/json");
 
-                client.BaseAddress = new Uri("https://localhost:7019/");
-                var putTask = client.PutAsync("ActualizarRol?IdRol" + c.Roles + "&Roles=" + c.IdRol + "&IdRol=", httpContent);
-                putTask.Wait();
-                var result = putTask.Result;
+
+                //string urlApi = "http://localhost/SERVICE/" + "api/UsuarioApi/CreateUsuario";
+                string urlApi = "https://localhost:7019/" + "api/Roles/ActualizarRol";
+
+                JsonContent contenido = JsonContent.Create(Rol);
+                HttpResponseMessage respuesta = acceso.PutAsync(urlApi, contenido).GetAwaiter().GetResult();
+
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    return "OK";
+                }
+                return string.Empty;
             }
         }
-        #endregion
-        //**************************************
-
     }
+    #endregion
+    //**************************************
+
 }
+
 #endregion
 //**************************************

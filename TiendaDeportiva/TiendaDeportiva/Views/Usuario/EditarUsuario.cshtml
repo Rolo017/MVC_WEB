@@ -1,6 +1,7 @@
 ﻿@model TiendaDeportiva.Entities.UsuarioObj
+
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "EditarUsuario";
 }
 
 <div class="content-wrapper">
@@ -14,7 +15,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Registro</li>
+                        <li class="breadcrumb-item active">Editar Usuario</li>
                     </ol>
                 </div>
             </div>
@@ -28,18 +29,18 @@
                 <!-- left column -->
                 <div class="col-md-4">
                     <!-- general form elements -->
-                    <div class=" ">
+                    <div class="">
                         <div class="card-header">
-                            <h3 class="card-title"></h3>
+                            <h3 class="card-title">Editar Rol</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        @using (Html.BeginForm("Register", "Usuario", FormMethod.Post))
+                        @using (Html.BeginForm("EditarUsuario", "Usuario", FormMethod.Post))
                         {
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="">Cedula</label>
-                                    @Html.TextBoxFor(m => m.Cedula, new{ @class="form-control", @placeholder="Cedula" })
+                                    <label for="">Cedula @Model.Cedula</label>
+                                    @Html.HiddenFor(m => m.Cedula)
                                 </div>
                                 <div class="form-group">
                                     <label for="">Nombre</label>
@@ -70,7 +71,6 @@
                                     <button type="submit" class="btn btn-success"><i class="fa-solid fa-check"></i></button>
                                 </div>
                             </div>
-                            <!-- /.card-body -->
                         }
                     </div>
                 </div>

@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-   
+
+    <script src="https://kit.fontawesome.com/a2721d9abd.js" crossorigin="anonymous"></script>
 
 
 </head>
@@ -38,16 +39,16 @@
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto ">
                 <!-- Navbar Search -->
-                
+
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                         <i class="fas fa-expand-arrows-alt"></i>
                     </a>
                 </li>
-               @* <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                        <i class="fas fa-th-large"></i>
-                    </a>
+                @* <li class="nav-item">
+                <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+                <i class="fas fa-th-large"></i>
+                </a>
                 </li>*@
             </ul>
         </nav>
@@ -72,16 +73,16 @@
                     </div>
                 </div>
 
-               @* <!-- SidebarSearch Form -->
+                @* <!-- SidebarSearch Form -->
                 <div class="form-inline">
-                    <div class="input-group" data-widget="sidebar-search">
-                        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-sidebar">
-                                <i class="fas fa-search fa-fw"></i>
-                            </button>
-                        </div>
-                    </div>
+                <div class="input-group" data-widget="sidebar-search">
+                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                <button class="btn btn-sidebar">
+                <i class="fas fa-search fa-fw"></i>
+                </button>
+                </div>
+                </div>
                 </div>*@
 
                 <!-- Sidebar Menu -->
@@ -89,74 +90,59 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                              with font-awesome or any other icon font library -->
-
-
-
-                             <!-- no me borren los comentarios porfa!!!-->
-
-                       @* <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-solid fa-box"></i>
-                                <p>
-                                    Emjemplo de DropBox
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
+                        <!-- no me borren los comentarios porfa!!!-->
+                        @*
+                            Emjemplo de DropBox
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="../../index.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Dashboard v1</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../../index2.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Dashboard v2</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../../index3.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Dashboard v3</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>*@
+                            <li class="nav-item">
+                                <a href="../../index.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Dashboard v1</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../index2.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Dashboard v2</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../index3.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Dashboard v3</p>
+                                </a>
+                            </li>
+                        </ul>*@
 
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="@Url.Action("Index","Productos")" class="nav-link">
                                 <i class="nav-icon fas fa-solid fa-box"></i>
-                                <p>
-                                    Inventario
-                                </p>
+                                Inventario
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../widgets.html" class="nav-link">
+                            <a href="@Url.Action("Index","Usuario")" class="nav-link">
                                 <i class="nav-icon fas fa-solid fa-users"></i>
-                                <p>
-                                    Empleados
-                                   
-                                </p>
+                                Empleados
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../widgets.html" class="nav-link">
+                            <a href="@Url.Action("Index","Roles")" class="nav-link">
                                 <i class="nav-icon fas fa-solid fa-user-tie"></i>
-                                <p>
-                                    Roles
-                                   
-                                </p>
+                                Roles
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../widgets.html" class="nav-link">
+                            <a href="@Url.Action("Index","Ventas")" class="nav-link">
+                                <i class="nav-icon fa-solid fa-dollar-sign"></i>
+                                Ventas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("","")" class="nav-link">
                                 <i class="nav-icon fas fa-solid fa-truck"></i>
-                                <p>
-                                    Proveedores
-                                    
-                                </p>
+                                Proveedores
+                                <span class="right badge badge-danger">Produccion</span>
                             </a>
                         </li>
                     </ul>

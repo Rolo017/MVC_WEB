@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Policy;
 using TiendaDeportiva.Entities;
 using TiendaDeportiva.Models;
 
@@ -8,23 +7,19 @@ namespace TiendaDeportiva.Controllers
 {
     public class ProductosController : Controller
     {
-        private readonly ILogger<Usuario> _logger;
+        //private readonly ILogger<Usuario> _logger;
 
         ProductosObj ProducE = new ProductosObj();
         ProductosModel prod = new ProductosModel();
+        // GET: ProductosController
+
         // GET: ProductosController
         public ActionResult Index()
         {
             List<ProductosObj> _Productos = new List<ProductosObj>();
             _Productos = prod.GetProductos().ToList();
             return View(_Productos);
-        }
 
-
-        // GET: ProductosController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
         }
 
         // GET: ProductosController/Create
@@ -36,10 +31,11 @@ namespace TiendaDeportiva.Controllers
         // POST: ProductosController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(ProductosObj prodC)
         {
             try
             {
+                prod.PostProductos(prodC);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -51,16 +47,18 @@ namespace TiendaDeportiva.Controllers
         // GET: ProductosController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            ProducE = prod.GetProductos(id);
+            return View(ProducE);
         }
 
         // POST: ProductosController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(ProductosObj Procd, IFormCollection collection)
         {
             try
             {
+                prod.PUTProductos(Procd);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -72,7 +70,9 @@ namespace TiendaDeportiva.Controllers
         // GET: ProductosController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            prod.EliminarProductos(id);
+            return RedirectToAction("Index", "Productos");
+
         }
 
         // POST: ProductosController/Delete/5

@@ -35,6 +35,9 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+                            <div class="pb-2">
+                                <a href="@Url.Action("Index","Productos", new {})" class="btn btn-success ml-auto" type="button" value=""><i class="fas fa-solid fa-box"></i></a>
+                            </div>
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
@@ -54,7 +57,7 @@
                                         {
                                             <tr>
                                                 <td>
-                                                    @item.ID_Venta
+                                                    @item.IdVenta
                                                 </td>
                                                 <td>
                                                     @item.Cedula
@@ -72,9 +75,10 @@
                                                     @item.Descripcion
                                                 </td>
                                                 <td>
-                                                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                                    <div class="text-center">
+                                                        <a href="@Url.Action("Edit","Ventas", new { ID = item.IdVenta })" class="text-warning" type="" value=""><i class="fa-solid fa-pen"></i></a>
+                                                        <a href="@Url.Action("Delete","Ventas", new { ID = item.IdVenta })" class="text-danger pl-4" type="" value=""><i class="fa-solid fa-trash"></i></a>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         }

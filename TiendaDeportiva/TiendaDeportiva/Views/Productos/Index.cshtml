@@ -34,6 +34,9 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+                            <div class="pb-2">
+                                <a href="@Url.Action("Create","Productos", new {})" class="btn btn-success ml-auto" type="button" value=""><i class="fa-solid fa-plus"></i></a>
+                            </div>
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
@@ -66,10 +69,12 @@
                                                 <td>
                                                     @item.Cantidad
                                                 </td>
-                                                <td>
-                                                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                                <td class="col-1">
+                                                    <div class="text-center">
+                                                        <a href="@Url.Action("Edit","Productos", new { ID = item.IdProducto })" class="text-warning" type="" value=""><i class="fa-solid fa-pen"></i></a>
+                                                        <a href="@Url.Action("Delete","Productos", new { ID = item.IdProducto })" class="text-danger pl-4" type="" value=""><i class="fa-solid fa-trash"></i></a>
+                                                        <a href="@Url.Action("Create","Ventas", new { ID = item.IdProducto })" class="text-success pl-4" type="" value=""><i class="nav-icon fa-solid fa-dollar-sign"></i></a>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         }

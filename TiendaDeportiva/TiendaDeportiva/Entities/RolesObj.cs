@@ -4,14 +4,8 @@ namespace TiendaDeportiva.Entities
 {
     public class RolesObj
     {
-
-
-        [JsonProperty("IdRol")]
-        public int IdRol { get; set; }
-
-        [JsonProperty("Roles")]
-        public String Roles { get; set; }
-
+        public int IdRol { get; set; } = 0;
+        public String Roles { get; set; } = string.Empty;
 
         public string toJsonString()
         {
@@ -22,10 +16,6 @@ namespace TiendaDeportiva.Entities
         {
             return toJsonString();
         }
-
-
-
-
 
     }
 }

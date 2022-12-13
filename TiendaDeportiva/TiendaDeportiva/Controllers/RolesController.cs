@@ -70,13 +70,11 @@ namespace TiendaDeportiva.Controllers
         }
 
         // GET: RolesController/Edit/5
-        public ActionResult Edit(int? id)
+        [HttpGet]
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return BadRequest();
-            }
-            rol.PUTRoles(rolE);
+            rolE = rol.GetRoles(id);
+            
             if (rolE == null)
             {
                 return NotFound();
@@ -92,8 +90,8 @@ namespace TiendaDeportiva.Controllers
         {
             if (ModelState.IsValid)
             {
-                rol.PUTRoles(rolE);
-                return RedirectToAction("Index");
+                rol.PUTRoles(rolesC);
+                return RedirectToAction("Index", "Roles");
             }
             //ViewBag.CodigoProveedor = new SelectList(db.Proveedores, "CodigoProveedor", "Nombre", articulos.CodigoProveedor);
             return View(rolesC);
@@ -113,30 +111,22 @@ namespace TiendaDeportiva.Controllers
             {
                 return NotFound();
             }
-
-            List<RolesObj> _rol = new List<RolesObj>();
-            _rol = rol.GetRoles().ToList();
             return RedirectToAction("Index", "Roles");
         }
 
-        //// POST: RolesController/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    try
-        //    {
-        //        rolE.IdRol = id;
-        //        rolE.Roles = "";
-        //        rol.EliminarRoles(rolE.IdRol);
-        //        return RedirectToAction("Index");
-
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
+        // POST: ProductosController/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
     }
 }
